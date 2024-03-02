@@ -1,0 +1,8 @@
+/.env
+/src/*
+/Dockerfile
+/entrypoint.dev.sh
+/entrypoint.prod.sh
+/entrypoint.sh
+/Makefile
+/.env.backup
