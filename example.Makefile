@@ -5,11 +5,6 @@ ifneq ("$(wildcard .env)","")
 endif
 
 # Constants
-CNT_NAME=node
-IMG_NAME=node-complexity
-IMG_TAG=latest
-PORT_OUT=3000
-PORT_IN=3000
 COL_WHITE=\033[1;37m
 COL_GREEN=\033[1;32m
 COL_YELLOW=\033[1;33m
