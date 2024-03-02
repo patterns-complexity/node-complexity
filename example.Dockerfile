@@ -32,8 +32,8 @@ ENTRYPOINT ["/app/entrypoint.sh"]
 
 FROM base as prod
 
-# Copy entrypoint.sh to /app
-COPY ./entrypoint.sh /app
+# Copy entrypoint.prod.sh to /app
+COPY ./entrypoint.prod.sh /app/entrypoint.sh
 
 # Set the entrypoint.sh file to be executable
 RUN chmod +x /app/entrypoint.sh

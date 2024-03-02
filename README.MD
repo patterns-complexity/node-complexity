@@ -194,6 +194,14 @@ The following files are included in the project both as examples and as the sour
 
 **A:** The production image is only meant for testing and simulating a production environment. It is not meant for actual production use. Always build your own images and containers for production.
 
+### Cleaning up the project doesn't work
+**Q:** I tried to clean up the project, but I am getting this error:
+```bash
+Error response from daemon: conflict: unable to remove repository reference "node-complexity:latest" (must force) - container 0b7e7f25256f is using its referenced image e22e6e3ff920
+```
+
+**A:** This error occurs when the container is still running. You need to stop the running container with `make stop` before you can clean up the project.
+
 
 **-- More common issues will be added as they are discovered. --**
 

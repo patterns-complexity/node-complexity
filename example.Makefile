@@ -42,6 +42,7 @@ install:
 	@echo "$(COL_WHITE)"
 	@echo "Installing the project..."
 	@echo ""
+	@mkdir ./src || echo "$(COL_YELLOW)Something went wrong. Please, create the src folder manually.$(COL_WHITE)"
 	@cp ./example.Dockerfile ./Dockerfile || echo "$(COL_YELLOW)Something went wrong. Please, copy the example.Dockerfile file to Dockerfile manually.$(COL_WHITE)"
 	@cp example.env .env || echo "$(COL_YELLOW)Something went wrong. Please, copy the example.env file to .env manually.$(COL_WHITE)"
 	@cp example.entrypoint.dev.sh entrypoint.dev.sh || echo "$(COL_YELLOW)Something went wrong. Please, copy the example.entrypoint.dev.sh file to entrypoint.dev.sh manually.$(COL_WHITE)"
@@ -99,11 +100,9 @@ logs:
 clean:
 	@echo "$(COL_WHITE)Cleaning the project..."
 	@echo ""
-	@docker stop $(CNT_NAME) || echo $(DEF_ERR_MSG)
-	@docker rm $(CNT_NAME) || echo $(DEF_ERR_MSG)
-	@docker rmi $(IMG_NAME):$(IMG_TAG) || echo $(DEF_ERR_MSG)
-	@echo ""
-	@echo "$(COL_GREEN)The project has been cleaned. You can run$(COL_YELLOW) make build$(COL_GREEN) to build the project again.$(COL_WHITE)"
+	@docker rmi $(IMG_NAME):$(IMG_TAG)  && \
+		echo "$(COL_GREEN)The project has been cleaned. You can run$(COL_YELLOW) make build$(COL_GREEN) to build the project again.$(COL_WHITE)"\
+		|| echo $(DEF_ERR_MSG)
 
 # This target will be executed if you run `make rebuild`
 rebuild: clean build
