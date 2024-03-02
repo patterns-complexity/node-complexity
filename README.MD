@@ -163,6 +163,9 @@ The `.env` file contains environment variables that are essential for configurin
 | IMG_TAG      | Tag for the Docker image                       | latest        |
 | PORT_OUT     | Outer port for accessing the application       | 3000          |
 | PORT_IN      | Inner port within the Docker container         | 3000          |
+| UID          | User ID for the Docker container               | 1000          |
+| GID          | Group ID for the Docker container              | 1000          |
+| UNAME        | User name for the Docker container             | node          |
 
 Please replace example values with the actual values you wish to use in your environment.
 
