@@ -76,7 +76,8 @@ start:
 	@chown -R $(UID):$(GID) ./src || echo "$(COL_YELLOW)\nSomething went wrong. Please, change the permissions of the src folder manually.$(COL_WHITE)"
 	@chmod -R ug+rwx ./src || echo "$(COL_YELLOW)\nSomething went wrong. Please, change the permissions of the src folder manually.$(COL_WHITE)"
 	@echo "$(COL_WHITE)Starting the project...$(COL_DEF)"
-	@docker run -it -p $(PORT_OUT):$(PORT_IN) -v ./src:/app -u $(UID):$(GID) --user $(UNAME) --name $(CNT_NAME) $(IMG_NAME):$(IMG_TAG) || echo $(DEF_ERR_MSG)
+	@docker network create $(NET_NAME) || echo "$(COL_YELLOW)The network already exists.$(COL_DEF)"
+	@docker run --network $(NET_NAME) -it -p $(PORT_OUT):$(PORT_IN) -v ./src:/app -u $(UID):$(GID) --user $(UNAME) --name $(CNT_NAME) $(IMG_NAME):$(IMG_TAG) || echo $(DEF_ERR_MSG)
 
 # This target will be executed if you run `make start-prod`
 start-prod:
@@ -87,6 +88,7 @@ start-prod:
 stop:
 	@echo "Stopping the project..."
 	@docker stop $(CNT_NAME) || echo $(DEF_ERR_MSG)
+	@docker network rm $(NET_NAME) || echo $(DEF_ERR_MSG)
 	@docker container rm $(CNT_NAME) || echo $(DEF_ERR_MSG)
 
 # This target will be executed if you run `make restart`

@@ -25,7 +25,8 @@ RUN chmod +x /app/entrypoint.sh
 ENV NODE_ENV=development
 
 # Install necessary packages
-RUN npm install -g nodemon pm2
+RUN yarn add -g nodemon pm2 @nestjs/cli
+RUN yarn add @nestjs/platform-fastify fastify
 
 # Run the entrypoint.sh file
 ENTRYPOINT ["/app/entrypoint.sh"]
